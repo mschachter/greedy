@@ -151,7 +151,7 @@ LieBracketFilter< TInputImage, TOutputImage>
 
         // Compute the directional derivative of u and v
         for(int k = 0; k < InputImageDimension; k++)
-          ptr_out[k] += scale * (
+          ptr_out[k] += (OutputPixelType) scale * (
             ((*u_right)[k] - (*u_left)[k]) * (*ptr_v)[i] - 
             ((*v_right)[k] - (*v_left)[k]) * (*ptr_u)[i]);
 
@@ -166,7 +166,7 @@ LieBracketFilter< TInputImage, TOutputImage>
 
       // Compute the directional derivative of u and v
       for(int k = 0; k < InputImageDimension; k++)
-        ptr_out[k] += scale * (
+        ptr_out[k] += (OutputPixelType) scale * (
           ((*u_right)[k] - (*u_left)[k]) * (*ptr_v)[i] - 
           ((*v_right)[k] - (*v_left)[k]) * (*ptr_u)[i]);
       }

@@ -127,7 +127,7 @@ protected:
   void ThreadedGenerateData(const OutputImageRegionType& outputRegionForThread,
                             itk::ThreadIdType threadId ) ITK_OVERRIDE;
 
-  virtual void VerifyInputInformation() ITK_OVERRIDE {}
+  virtual void VerifyInputInformation() {};
 
   virtual void GenerateInputRequestedRegion() ITK_OVERRIDE;
 

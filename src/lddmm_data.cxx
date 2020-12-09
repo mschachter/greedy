@@ -45,7 +45,6 @@
 #include "itkMinimumMaximumImageFilter.h"
 #include "itkShrinkImageFilter.h"
 #include "itkResampleImageFilter.h"
-#include "itkVectorResampleImageFilter.h"
 #include "itkNearestNeighborInterpolateImageFunction.h"
 #include "itkVectorNearestNeighborInterpolateImageFunction.h"
 #include "itkBinaryThresholdImageFilter.h"
@@ -1661,7 +1660,7 @@ LDDMMData<TFloat, VDim>
   // Compute the size of the new image
   typename ImageType::SizeType sz;
   for(int i = 0; i < VDim; i++)
-    sz[i] = (unsigned long) vcl_ceil(src->GetBufferedRegion().GetSize()[i] / factor);
+    sz[i] = (unsigned long) std::ceil(src->GetBufferedRegion().GetSize()[i] / factor);
 
   // Compute the spacing of the new image
   typename ImageType::SpacingType spc_pre = src->GetSpacing();
@@ -1706,9 +1705,9 @@ void
 LDDMMData<TFloat, VDim>
 ::vimg_resample_identity(VectorImageType *src, ImageBaseType *ref, VectorImageType *trg)
 {
-  typedef itk::VectorResampleImageFilter<VectorImageType, VectorImageType, TFloat> ResampleFilter;
+  typedef itk::ResampleImageFilter<VectorImageType, VectorImageType, TFloat> ResampleFilter;
   typedef itk::IdentityTransform<TFloat, VDim> TranType;
-  typedef itk::OptVectorLinearInterpolateImageFunction<VectorImageType, TFloat> InterpType;
+  typedef itk::LinearInterpolateImageFunction<VectorImageType, TFloat> InterpType;
 
   typename ResampleFilter::Pointer filter = ResampleFilter::New();
   typename TranType::Pointer tran = TranType::New();
@@ -1758,7 +1757,7 @@ public:
   typedef typename TImage::PixelType PixelType;
   PixelType operator() (const PixelType &x)
   {
-    return isnan(x) ? 1 : 0;
+    return std::isnan(x) ? 1 : 0;
   }
 };
 
@@ -1771,7 +1770,7 @@ public:
   typedef typename TImage::PixelType PixelType;
   PixelType operator() (const PixelType &x)
   {
-    return isnan(x) ? 0 : x;
+    return std::isnan(x) ? 0 : x;
   }
 };
 

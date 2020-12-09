@@ -1254,7 +1254,7 @@ int GreedyApproach<VDim, TReal>
   ReadImages(param, of_helper);
 
   // An image pointer desribing the current estimate of the deformation
-  VectorImagePointer uLevel = NULL;
+  VectorImagePointer uLevel = nullptr;
 
   // The number of resolution levels
   unsigned nlevels = param.iter_per_level.size();
@@ -1313,7 +1313,7 @@ int GreedyApproach<VDim, TReal>
     void *incompressibility_solver = NULL;
 
     // Mask used for incompressibility purposes
-    ImagePointer incompressibility_mask = NULL;
+    ImagePointer incompressibility_mask = nullptr;
 
     // Allocate the intermediate data
     LDDMMType::alloc_vimg(uk, refspace);
@@ -1747,7 +1747,7 @@ int GreedyApproach<VDim, TReal>
   ReadImages(param, of_helper);
 
   // An image pointer desribing the current estimate of the deformation
-  VectorImagePointer uLevel = NULL;
+  VectorImagePointer uLevel = nullptr;
 
   // Reference space
   ImageBaseType *refspace = of_helper.GetReferenceSpace(0);
@@ -2816,12 +2816,12 @@ void GreedyApproach<VDim, TReal>
   if(param.threads > 0)
     {
     gout.printf("Limiting the number of threads to %d\n", param.threads);
-    itk::MultiThreader::SetGlobalMaximumNumberOfThreads(param.threads);
+    itk::MultiThreaderBase::SetGlobalMaximumNumberOfThreads(param.threads);
     }
   else
     {
     gout.printf("Executing with the default number of threads: %d\n",
-                itk::MultiThreader::GetGlobalDefaultNumberOfThreads());
+                itk::MultiThreaderBase::GetGlobalDefaultNumberOfThreads());
     }
 }
 

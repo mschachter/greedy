@@ -51,8 +51,13 @@ OPTION(GREEDY_USE_SPARSE_SOLVERS "Build registration tools that use sparse solve
 #--------------------------------------------------------------------------------
 
 # ITK
-FIND_PACKAGE(ITK 4.12.2 REQUIRED)
+FIND_PACKAGE(ITK REQUIRED)
 INCLUDE(${ITK_USE_FILE})
+
+# Eigen
+FIND_PACKAGE(Eigen3)
+ADD_DEFINITIONS(${EIGEN3_DEFINITIONS})
+INCLUDE_DIRECTORIES(${EIGEN3_INCLUDE_DIRS})
 
 # Deal with FFTW - only used by experimental LDDMM code
 IF(GREEDY_USE_FFTW)

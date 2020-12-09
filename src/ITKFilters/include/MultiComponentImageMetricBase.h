@@ -221,7 +221,7 @@ protected:
   MultiComponentImageMetricBase();
   ~MultiComponentImageMetricBase() {}
 
-  virtual void VerifyInputInformation() ITK_OVERRIDE {}
+  virtual void VerifyInputInformation() {};
 
   /** It is difficult to compute in advance the input image region
    * required to compute the requested output region. Thus the safest

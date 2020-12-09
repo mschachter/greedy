@@ -252,8 +252,8 @@ MultiImageOpticalFlowHelper<TFloat, VDim>
         }
       else
         {
-        nans_fixed = isnan(LDDMMType::img_voxel_sum(fltExtractFixed->GetOutput()));
-        nans_moving = isnan(LDDMMType::img_voxel_sum(fltExtractMoving->GetOutput()));
+        nans_fixed = std::isnan(LDDMMType::img_voxel_sum(fltExtractFixed->GetOutput()));
+        nans_moving = std::isnan(LDDMMType::img_voxel_sum(fltExtractMoving->GetOutput()));
         }
 
       // Report number of NaNs in fixed and moving images
@@ -364,7 +364,7 @@ MultiImageOpticalFlowHelper<TFloat, VDim>
     }
 
   // Set up the mask pyramid
-  m_GradientMaskComposite.resize(m_PyramidFactors.size(), NULL);
+  m_GradientMaskComposite.resize(m_PyramidFactors.size(), nullptr);
   if(m_GradientMaskImage)
     {
     for(int i = 0; i < m_PyramidFactors.size(); i++)
@@ -416,7 +416,7 @@ MultiImageOpticalFlowHelper<TFloat, VDim>
     }
 
   // Set up the moving mask pyramid
-  m_MovingMaskComposite.resize(m_PyramidFactors.size(), NULL);
+  m_MovingMaskComposite.resize(m_PyramidFactors.size(), nullptr);
   if(m_MovingMaskImage)
     {
     for(int i = 0; i < m_PyramidFactors.size(); i++)
@@ -441,7 +441,7 @@ MultiImageOpticalFlowHelper<TFloat, VDim>
     }
 
   // Set up the jitter images
-  m_JitterComposite.resize(m_PyramidFactors.size(), NULL);
+  m_JitterComposite.resize(m_PyramidFactors.size(), nullptr);
   if(m_JitterSigma > 0)
     {
     for(int i = 0; i < m_PyramidFactors.size(); i++)
@@ -757,7 +757,7 @@ MultiImageOpticalFlowHelper<TFloat, VDim>
   metric->SetAffineTransform(tran);
   metric->SetComputeMovingDomainMask(true);
   metric->GetMetricOutput()->Graft(wrkMetric);
-  metric->SetComputeGradient(grad != NULL);
+  metric->SetComputeGradient(grad != nullptr);
   metric->SetFixedMaskImage(m_GradientMaskComposite[level]);
   metric->SetMovingMaskImage(m_MovingMaskComposite[level]);
   metric->SetJitterImage(m_JitterComposite[level]);
@@ -825,7 +825,7 @@ MultiImageOpticalFlowHelper<TFloat, VDim>
   metric->SetAffineTransform(tran);
   metric->SetComputeMovingDomainMask(true);
   metric->GetMetricOutput()->Graft(wrkMetric);
-  metric->SetComputeGradient(grad != NULL);
+  metric->SetComputeGradient(grad != nullptr);
   metric->SetFixedMaskImage(m_GradientMaskComposite[level]);
   metric->SetMovingMaskImage(m_MovingMaskComposite[level]);
   metric->SetBins(128);
@@ -887,7 +887,7 @@ MultiImageOpticalFlowHelper<TFloat, VDim>
   metric->SetAffineTransform(tran);
   metric->SetComputeMovingDomainMask(false);
   metric->GetMetricOutput()->Graft(wrkMetric);
-  metric->SetComputeGradient(grad != NULL);
+  metric->SetComputeGradient(grad != nullptr);
   metric->SetRadius(radius_fix);
   metric->SetWorkingImage(m_NCCWorkingImage);
   metric->SetReuseWorkingImageFixedComponents(!first_run);

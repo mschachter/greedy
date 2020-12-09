@@ -25,7 +25,7 @@
 #define MULTICOMPONENTAPPROXIMATENCCIMAGEMETRIC_H
 
 #include "MultiComponentImageMetricBase.h"
-#include "itkBarrier.h"
+//#include "itkBarrier.h"
 
 /**
  * Normalized cross-correlation metric similar to the one used in ANTS. The gradient

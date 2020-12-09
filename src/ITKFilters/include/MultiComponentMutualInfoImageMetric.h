@@ -29,7 +29,7 @@
 #define MULTICOMPONENTMUTUALINFOIMAGEMETRIC_H
 
 #include "MultiComponentImageMetricBase.h"
-#include "itkBarrier.h"
+//#include "itkBarrier.h"
 #include <queue>
 #include <vector>
 #include <functional>

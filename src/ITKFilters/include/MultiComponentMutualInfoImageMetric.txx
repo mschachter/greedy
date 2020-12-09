@@ -198,9 +198,9 @@ MultiComponentMutualInfoImageMetric<TMetricTraits>
 
   // Code to determine the actual number of threads used below
   itk::ThreadIdType nbOfThreads = this->GetNumberOfThreads();
-  if ( itk::MultiThreader::GetGlobalMaximumNumberOfThreads() != 0 )
+  if ( itk::MultiThreaderBase::GetGlobalMaximumNumberOfThreads() != 0 )
     {
-    nbOfThreads = vnl_math_min( this->GetNumberOfThreads(), itk::MultiThreader::GetGlobalMaximumNumberOfThreads() );
+    nbOfThreads = vnl_math::min( this->GetNumberOfThreads(), itk::MultiThreader::GetGlobalMaximumNumberOfThreads() );
     }
 
   itk::ImageRegion<ImageDimension> splitRegion;  // dummy region - just to call
@@ -470,7 +470,7 @@ MutualInformationPreprocessingFilter<TInputImage, TOutputImage>
   itk::ThreadIdType nbOfThreads = this->GetNumberOfThreads();
   if ( itk::MultiThreader::GetGlobalMaximumNumberOfThreads() != 0 )
     {
-    nbOfThreads = vnl_math_min( this->GetNumberOfThreads(), itk::MultiThreader::GetGlobalMaximumNumberOfThreads() );
+    nbOfThreads = vnl_math::min( this->GetNumberOfThreads(), itk::MultiThreader::GetGlobalMaximumNumberOfThreads() );
     }
 
   typename TOutputImage::RegionType splitRegion;  // dummy region - just to call
@@ -523,7 +523,7 @@ MutualInformationPreprocessingFilter<TInputImage, TOutputImage>
       for(int p = 0; p < line_length; p++, line+=ncomp)
         {
         InputComponentType v = *line;
-        if(!isnan(v))
+        if(!std::isnan(v))
           {
           heap_lower_push(td.heap_lower, heap_size_lower, v);
           heap_upper_push(td.heap_upper, heap_size_upper, v);

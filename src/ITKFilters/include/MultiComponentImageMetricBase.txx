@@ -58,7 +58,7 @@ MultiComponentImageMetricBase<TMetricTraits>
     }
   else
     {
-    return NULL;
+    return nullptr;
     }
 }
 
